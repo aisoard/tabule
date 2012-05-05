@@ -21,9 +21,14 @@ void crunch_chunk(chunk_t & chunk, tabs_t & tabs) {
 
 		/* When number of tab decrease, update offset of corresponding tabs on previous lines with enought tab */
 		while(k < tabs.size()) {
-			for(int j = i-1; j >= 0 && k < chunk[j].size()-1; j--)
-				for(int x = std::max<int>(min_tab_width, tabs.back()+1) - utf8_length(chunk[j][tabs.size()-1]); x > 0; x--)
-					chunk[j][tabs.size()-1].push_back(' ');
+			for(int j = i-1; j >= 0 && k < chunk[j].size()-1; j--) {
+				if(keep_tabs == true && tabs.back() == 0) {
+					chunk[j][tabs.size()-1].push_back('\t');
+				} else {
+					for(int x = std::max<int>(min_tab_width, tabs.back()+1) - utf8_length(chunk[j][tabs.size()-1]); x > 0; x--)
+						chunk[j][tabs.size()-1].push_back(' ');
+				}
+			}
 
 			tabs.pop_back();
 		}

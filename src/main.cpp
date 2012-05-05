@@ -11,6 +11,8 @@
 
 int min_tab_width = 8;
 
+bool keep_tabs = true;
+
 int main(int nb_arg, char* args[]) {
 	if(parse_args(nb_arg, args)) {
 		return 1;

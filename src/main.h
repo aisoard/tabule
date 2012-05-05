@@ -11,5 +11,6 @@ typedef std::deque<line_t> chunk_t;
 typedef std::vector<int> tabs_t;
 
 extern int min_tab_width;
+extern bool keep_tabs;
 
 #endif // MAIN_H
