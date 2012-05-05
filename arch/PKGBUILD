@@ -1,0 +1,22 @@
+# Maintainer: Alexandre Isoard <alexandre.isoard@gmail.com>
+pkgname=tabule
+pkgauthor=surfmaths
+pkgver=1.1.0
+pkggithub="${pkgauthor}-${pkgname}-7fab4eb"
+pkgrel=1
+pkgdesc="Transform tabulations into spaces ensuring both alignment and indentation"
+
+url='http://github.com/surfmaths/tabule/'
+license=('GPL')
+source=("${pkggithub}.tar.gz::https://github.com/${pkgauthor}/${pkgname}/tarball/${pkgver}")
+md5sums=('db2ec268290c2b3b7c4cf59e9c4e30b2')
+
+arch=('i686' 'x86_64')
+
+build() {
+	make -C "${srcdir}/${pkggithub}"
+}
+
+package() {
+	make PREFIX=${pkgdir} -C "${srcdir}/${pkggithub}" install
+}
